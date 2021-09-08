@@ -1,0 +1,6 @@
+STUDENTID,Studentname,Marks
+1,"wardha",45
+2,"Kashif",85
+3,"wardha",67
+4,"Kashif",88
+5,"adnan",90
