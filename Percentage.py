@@ -1,21 +1,32 @@
 import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.formatting import formatting
+from openpyxl.styles.builtins import styles
+from openpyxl.utils import get_column_letter
 
-df=pd.read_excel("final_output.xlsx",index_col=0)
-print(df)
+wb = load_workbook('sheet4.xlsx')
+ws= wb.active
+#
+# df=pd.read_excel("sheet4.xlsx",sheet_name='Sheet1')
+#
+# total=50
+# # df.style.apply(lambda x:["background:red" if x<total else "background:green" for x in df.Percentage], axis=0)
+# df2=df.style.apply(lambda x:["background-color:red" if x<total else "background-color:green" for x in df.Percentage], axis=0)
+#
+# df2.to_excel("sheet.xlsx", engine="openpyxl" ,index=False)
 
-per=[]
-for val in df["Marks"]:
-    percent=((val)/100) * 100
-    per.append(percent)
-print(per)
+min_column = wb.active.min_column
+max_column = wb.active.max_column
+min_row = wb.active.min_row
+max_row = wb.active.max_row
 
-df["Percentage"]=per
-print(df)
-total=50
-# df.style.apply(lambda x:["background:red" if x<total else "background:green" for x in df.Percentage], axis=0)
-df2=df.style.apply(lambda x:["background-color:red" if x<total else "background-color:green" for x in df.Percentage], axis=0)
-df2.to_excel("sheet.xlsx", engine="openpyxl" ,index=False)
 
+for row in range(1,7):
+    for column in range(1,7):
+        ws.cell(row=row, column=column)
+        ws.conditional_formatting.add('H',formatting.rule.CellIsRule(operator='lessThan', formula=['50'],fill=red_fill))
+
+wb.save('sheet4.xlsx')
 #
 # import pyexcel as pe
 # records = pe.iget_records(file_name="final_output.xlsx")
