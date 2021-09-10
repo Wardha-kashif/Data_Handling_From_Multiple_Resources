@@ -54,7 +54,7 @@ from openpyxl.styles import Font
 from openpyxl.chart import BarChart, Reference
 import string
 
-wb = load_workbook('sheet1.xlsx')
+wb = load_workbook('sheet.xlsx')
 sheet = wb['Sheet1']
 # cell references (original spreadsheet)
 min_column = wb.active.min_column
@@ -111,9 +111,6 @@ print(df)
 total=50
 # df.style.apply(lambda x:["background:red" if x<total else "background:green" for x in df.Percentage], axis=0)
 df2=df.style.apply(lambda x:["background-color:red" if x<total else "background-color:green" for x in df.Percentage], axis=0)
-
-
-
 
 
 df2.to_excel("sheet3.xlsx", engine="openpyxl" ,index=False)

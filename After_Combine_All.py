@@ -69,9 +69,18 @@ from openpyxl.chart import BarChart, Reference
 import string
 
 wb = load_workbook("sheet4.xlsx")
+ws = wb['Sheet1']
 
-data_frame = pd.DataFrame(wb)
-sheet = wb['Sheet1']
+for i in range(2,7):
+    balance=ws.cell(row=i,column=8).value
+    print(balance)
+    # intrest = ws.cell(row=i, column=3).value
+    # final_balance=(balance * interest) + balance
+    # ws.cell(row=i,column=3).value=final_balance
+    # print(balance)
+
+
+wb.save('sheet4.xlsx')
 # cell references (original spreadsheet)
 min_column = wb.active.min_column
 max_column = wb.active.max_column
@@ -90,30 +99,60 @@ excel_alphabet = alphabet[0:max_column]
 print(excel_alphabet)
 
 
-for i in excel_alphabet:
-    if i=='H':
-        for j in range(max_row):
-            sheet[f'{i}{j + 2}']= f'=(D{j + 2}/100 * 100)'
+
+# for i in excel_alphabet:
+#     if i=='H':
+#         for j in range(max_row):
+#             ws[f'{i}{j + 2}']= f'=(D{j + 2}/100 * 100)'
 
 wb.save('sheet4.xlsx')
 
 
-# adding total label
-# sheet[f'{excel_alphabet[0]}{max_column+1}'] = 'Total'
-# wb.save('sheet1.xlsx')
-
-wb = load_workbook("sheet4.xlsx")
-ws = wb['Sheet1']
-data = ws.values
-# Get the first line in file as a header line
-columns = next(data)[0:]
-# Create a DataFrame based on the second and subsequent lines of data
-df = pd.DataFrame(data, columns=columns)
-print(df.head(3))
-
-# total=50
-# # df.style.apply(lambda x:["background:red" if x<total else "background:green" for x in df.Percentage], axis=0)
-# df6=df.style.apply(lambda x:["background-color:red" if x<total else "background-color:green" for x in df.Percentage], axis=0)
-# df6.to_excel("sheet3.xlsx", engine="openpyxl" ,index=False)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# # adding total label
+# # sheet[f'{excel_alphabet[0]}{max_column+1}'] = 'Total'
+# # wb.save('sheet1.xlsx')
+#
+#
+# import openpyxl
+# from openpyxl import load_workbook
+# from openpyxl.styles import Font
+# from openpyxl.chart import BarChart, Reference
+# import string
+#
+# wb = load_workbook("sheet4.xlsx")
+# ws = wb['Sheet1']
+#
+# for i in range(2,7):
+#     balance = ws.cell(row=i, column=8).value
+#     print(balance)
+#
+# # data = ws.values
+# # # Get the first line in file as a header line
+# # columns = next(data)[0:]
+# # # Create a DataFrame based on the second and subsequent lines of data
+# # df = pd.DataFrame(data, columns=columns)
+# # print(df.head(3))
+#
+#
+#
+# # total=50
+# # # df.style.apply(lambda x:["background:red" if x<total else "background:green" for x in df.Percentage], axis=0)
+# # df6=df.style.apply(lambda x:["background-color:red" if x<total else "background-color:green" for x in df.Percentage], axis=0)
+# # df6.to_excel("sheet3.xlsx", engine="openpyxl" ,index=False)
+#
+#
